@@ -11,8 +11,7 @@ from django.contrib.auth.models import User
 class GastoForm(ModelForm):
     class Meta:
         model = Gasto
-        #widget = {'fecha_gasto': DateInput()}
-        fields = '__all__'
+        fields = ['nombre_gasto', 'valor_gasto', 'fecha_gasto', 'categoria']
         
 
 class CreateUserForm(UserCreationForm):
