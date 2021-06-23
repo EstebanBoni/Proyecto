@@ -1,0 +1,15 @@
+{% extends 'accounts/main.html' %}
+{% load static %}
+{% block content %}
+
+<p>Estas seguro que quieres eliminar el dato "{{item}}"?</p>
+
+<form action="{% url 'eliminar_gasto' item.id %}" method="POST">
+
+    {% csrf_token%}
+    <a href="{% url 'home' %}">Cancelar</a>
+
+    <input type="submit" name="Confirmar">
+</form>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Todo list</title>
+    </head>
+    <body>
+        <h1>Agregar tarea</h1>
+        <form method="POST">
+            {% csrf_token%}
+            {{form}}
+            <button>Enviar</button>
+        </form>
+        
+    </body>
+</html>

@@ -1,0 +1,97 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Comparación por fechas</h5>
+			<hr>
+			<form method="POST">
+                {% csrf_token %}
+                <span> Fecha de inicio T1 </span>{{form.inicio}}
+                <span> Fecha de fin T1</span> {{form.fin}}
+                <span> Fecha de inicio T2 </span>{{form.inicio2}}
+                <span> Fecha de fin T2</span> {{form.fin2}}
+
+            <button class="btn btn-primary" type="submit">Filtrar</button>
+            </form>
+		</div>
+	</div>
+
+<br>
+
+
+
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Gasto</th>
+					<th>Valor</th>
+					<th>Fecha Gasto</th>
+					<th>Categoria</th>
+				</tr>
+                    {% for i in gastos %}
+						<tr>
+							<td>{{i.nombre_gasto}}</td>
+							<td>{{i.valor_gasto}}</td>
+							<td>{{i.fecha_gasto}}</td>
+						    <td>{{i.categoria}}</td>
+						</tr>
+					{% endfor %}
+
+			</table>
+		</div>
+	</div>
+
+
+
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Gasto</th>
+					<th>Valor</th>
+					<th>Fecha Gasto</th>
+					<th>Categoria</th>
+				</tr>
+
+                {% for i in gastos2 %}
+					<tr>
+						<td>{{i.nombre_gasto}}</td>
+						<td>{{i.valor_gasto}}</td>
+						<td>{{i.fecha_gasto}}</td>
+						<td>{{i.categoria}}</td>
+					</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+
+</div>
+<br>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<span>El total gastado en el primer periodo es de: {{suma1}}</span>
+		</div>
+	</div>
+	<div class="col-md">
+		<div class="card card-body">
+			<span>El total gastado en el segundo periodo es de: {{suma2}}</span>
+		</div>
+	</div>
+</div>
+<br> 
+<div class="row">
+	<div class="card card-body">
+		<span>{{mensaj}} con una diferencia de {{diferencia}}</span>
+	</div>
+</div>
+
+{% endblock %}

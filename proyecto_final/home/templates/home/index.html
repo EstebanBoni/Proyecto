@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Django proyecto</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css'%}">
+    </head>
+    <body>
+        <h1>Lista gastos</h1>
+        <ul>
+            {% for gasto in gastos %}
+            <li>{{gasto}}</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'add'%}">Añadir</a>
+            Saludos desde un template
+    </body>
+</html>

@@ -1,0 +1,54 @@
+{%  extends 'accounts/main.html' %}
+
+{% block content %}
+
+<br>
+
+		<div class="row">
+			<div class="col-md">
+				<div class="card card-body">
+					<h5>Ahorros Futuros</h5>
+				</div>
+
+				<form method="GET">
+					{{myFilter.form}}
+				<button class="btn btn-primary" type="submit">Buscar</button>
+				</form>
+
+				<div class="card card-body">
+					<table class="table">
+						<tr>
+							<th>Nombre Gasto</th>
+							<th>Valor Gasto</th>
+							<th>Fecha</th>
+							<th>Categoria</th>
+						</tr>
+
+						{% for i in gastos %}
+							<tr>
+								<td>{{i.nombre_gasto}}</td>
+								<td>{{i.valor_gasto}}</td>
+								<td>{{i.fecha_gasto}}</td>
+								<td>{{i.categoria}}</td>
+								<td><a class="btn btn-sm btn-info" href=
+									"{% url 'actualizar_gasto' i.id %}">Update</a></td>
+								<td><a class="btn btn-sm btn-danger" href=
+									"{% url 'eliminar_gasto' i.id%}">Delete</a></td>
+							</tr>
+						{% endfor %}
+					</table>
+				</div>
+			</div>
+			
+		</div>
+
+        <hr>
+
+        <div>
+            <div class="card card-body">
+                <span>El total de gastos a futuro es de {{ftotal}} , para lo que es necesario ahorrar mensualmente {{ahorro}}</span>
+            </div>
+        </div>
+
+
+{% endblock content %}

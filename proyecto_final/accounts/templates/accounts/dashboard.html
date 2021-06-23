@@ -1,0 +1,65 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+</br>
+
+
+<div class="row">
+    <div class="col-md-5">
+     <h5>Presupuesto:</h5>
+     <hr>
+     <div class="card card-body">
+      <a class="btn btn-primary  btn-sm btn-block" href="">Crear Presupuesto</a>
+      <table class="table table-sm">
+       <tr>
+        <th></th>
+        <th>Presupuesto </th>
+        <th>Fecha</th>
+       </tr>
+
+       {% for presupuesto in presupuesto %}
+        <tr>
+            <td>Valor </td>
+            <td>{{presupuesto.valor_presupuesto}}</td>
+            <td>{{presupuesto.fecha_presupuesto}}</td>
+        </tr>
+        {% endfor %}
+   
+      </table>
+     </div>
+    </div>
+   
+    <div class="col-md-7">
+     <h5>Gastos del mes</h5>
+     <hr>
+     <div class="card card-body">
+      <a class="btn btn-primary  btn-sm btn-block" href="{% url 'gastos_form'%}">Crear Gastos</a>
+      <table class="table table-sm">
+       <tr>
+        <th>Gasto</th>
+        <th>Fecha</th>
+        <th>Cantidad gastada</th>
+        <th>Actualizar</th>
+        <th>Eliminar</th>
+       </tr>
+
+       {% for gastos in gastos %}
+        <tr>
+            <td>{{gastos.nombre_gasto}} </td>
+            <td>{{gastos.fecha_gasto}}</td>
+            <td>{{gastos.valor_gasto}}</td>
+            <td><a class="btn btn-sm btn-info" href=
+            "{% url 'actualizar_gasto' gastos.id %}">Update</a></td>
+            <td><a class="btn btn-sm btn-danger" href=
+            "{% url 'eliminar_gasto' gastos.id%}">Delete</a></td>
+        </tr>
+        {% endfor %}
+     
+      </table>
+     </div>
+    </div>
+   
+   </div>
+
+{% endblock %}
