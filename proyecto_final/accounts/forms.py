@@ -28,3 +28,6 @@ class Fecha(forms.Form):
     inicio2 =  forms.DateField(required=True, label='FechaInicio2', widget=DateInput)
     fin2 =  forms.DateField(required=True, label='FechaInicio2', widget=DateInput)
         
+class FechaPrueba(forms.Form):
+    inicio =  forms.DateField(required=True, label='FechaInicio', widget=DateInput)
+    fin =  forms.DateField(required=True, label='FechaInicio', widget=DateInput)

@@ -1,0 +1,45 @@
+{% block content %}
+
+<div class="col-md">
+    <div class="card card-body">
+        <h5>Comparación por fechas</h5>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            <span> Fecha de inicio T1 </span>{{form.inicio}}
+            <span> Fecha de fin T1</span> {{form.fin}}
+
+        <button class="btn btn-primary" type="submit">Filtrar</button>
+        </form>
+    </div>
+</div>
+
+<br>
+
+<table class="table">
+    <tr>
+        <th>Beneficiario</th>
+        <th>Bono Acreditado</th>
+        <th>Fecha de Bono</th>
+        <th>Motivo</th>
+    </tr>
+
+    {% for i in bonos %}
+    <tr>
+        <td>{{i.usuario}}</td>
+        <td>{{i.bono}}</td>
+        <td>{{i.fechaBono}}</td>
+        <td>{{i.motivo}}</td>
+
+    </tr>
+    {% endfor %}
+</table>
+
+
+<hr>
+
+<span>El total del bonos repartidos en el intervalo de tiempo es de {{ftotal}}</span> 
+
+
+
+{% endblock content %}

@@ -2,7 +2,7 @@ from django.core.validators import DecimalValidator
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
-from .forms import GastoForm, CreateUserForm, Fecha
+from .forms import FechaPrueba, GastoForm, CreateUserForm, Fecha
 from .filters import GastoFilter
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
@@ -178,4 +178,27 @@ def ahorros(request):
 
     return render(request, 'accounts/ahorros.html',context)
 
+
+def bonos(request):
+    form = FechaPrueba()
+    bonos = Bono.objects.all()
+    suma = 0 
+    if request.method == "GET":
+        context ={'bonos':bonos, 'suma':suma, 'form':form}
+        return render(request, 'accounts/bonos.html', context)
+    if request.method == 'POST':
+        form = FechaPrueba(request.POST)
+        if form.is_valid():
+            fechaI = form.cleaned_data.get("inicio")
+            fechaF = form.cleaned_data.get("fin")
+            bonos = Bono.objects.filter(fechaBono__range=[fechaI, fechaF]).order_by('fechaBono')
+            suma = sum(bonos.values_list('bono', flat=True))
+            ftotal = float(suma)
+
+            context = {'form':form, 'bonos':bonos, 'ftotal':ftotal}
+            
+            return render(request, 'accounts/bonos.html', context)
+    
+
   
+

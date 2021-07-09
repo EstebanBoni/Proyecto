@@ -21,6 +21,27 @@ class Presupuesto(models.Model):
     
     valor_presupuesto = models.DecimalField(max_digits=10, decimal_places=2,null=True)
     fecha_presupuesto = models.DateField(auto_now_add=False, null= True)
+
+class Usuario(models.Model):
+    nombreUsu = models.CharField(max_length=20)
+    apellidoUsu = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.nombreUsu + '' + self.apellidoUsu
+
+class Bono(models.Model):
+    
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, null= False)
+    bono = models.DecimalField(max_digits=5, decimal_places=2, validators=[MinValueValidator(0.01)], null=False)
+    fechaBono = models.DateField(null=False)
+    motivo = models.CharField(max_length=200, null=True)
+    
+
+
+
+
+
+
     
         
 
